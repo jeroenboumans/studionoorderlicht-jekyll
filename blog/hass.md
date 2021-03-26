@@ -3,13 +3,14 @@ layout: page
 title: Blog
 permalink: /blog/hass
 excerpt_separator: <!--more-->
-thumbnail: ![](https://i.imgur.com/yrWD9Jj.png)
+thumbnail: https://i.imgur.com/yrWD9Jj.png
 ---
 
 # State Listener for Home Assistant
 (and Pimoroni's Micro Dot pHAT)
 
-{{thumbnail}}
+![]({{thumbnail}})
+
 A Home Assistent state listener made with Python powered by the Home Asssistent websocket API. Each script contains of two parallel processes:
 - Logger: when configured states change value the logger starts outputting these.
 - Listener: the handler to listen and write states changes to memory.
@@ -60,7 +61,7 @@ $ curl https://get.pimoroni.com/microdotphat | bash
 
 ### Run logger
 
-{{thumbnail}}
+![]({{thumbnail}})
 
 ```bash
 # Run logger or pHAT logger 
