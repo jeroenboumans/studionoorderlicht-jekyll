@@ -44,6 +44,11 @@ pagination:
   sort_field: 'date'
   sort_reverse: true
 
+defaults:
+  - scope:
+      path: "assets"
+    values:
+      image: true
 
 # Build settings
 #theme: minima

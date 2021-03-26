@@ -5,7 +5,24 @@
 @import "tailwindcss/utilities";
 
 @layer components {
-    /*pre.highlight {*/
-    /*    @apply text-indigo-400 bg-blue-800;*/
-    /*}*/
+    h1, h2, h3, h4, p, ul, pre {
+        @apply mt-4 max-w-2xl text-xl mb-8 text-gray-600 dark:text-indigo-100 lg:mx-auto;
+    }
+
+    h1, h2 {
+        @apply mt-2 text-5xl font-extrabold tracking-tight text-gray-700 dark:text-indigo-600 sm:text-7xl;
+    }
+
+    h2 {
+        @apply text-4xl;
+    }
+
+    pre {
+        @apply text-sm p-3 rounded-md bg-gray-100 text-gray-700 dark:bg-gray-900 dark:text-indigo-400;
+
+    }
+
+    pre  .c {
+        @apply text-gray-400 dark:text-indigo-700;
+    }
 }
