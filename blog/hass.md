@@ -3,7 +3,7 @@ layout: page
 title: Blog
 permalink: /blog/hass
 excerpt_separator: <!--more-->
-thumbnail: ![Screenshot of the log output](https://i.imgur.com/yrWD9Jj.png)
+
 
 ---
 

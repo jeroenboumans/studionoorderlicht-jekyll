@@ -1,0 +1,11 @@
+---
+---
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer components {
+    /*pre.highlight {*/
+    /*    @apply text-indigo-400 bg-blue-800;*/
+    /*}*/
+}

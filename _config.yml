@@ -28,11 +28,29 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
+gems:
+  - jekyll-paginate-v2
+
+# Explicitly turn off the old code
+
+
+# Pagination Settings
+pagination:
+  enabled: true
+  per_page: 3
+  permalink: '/page/:num/'
+  title: ' - page :num'
+  limit: 0
+  sort_field: 'date'
+  sort_reverse: true
+
 
 # Build settings
-theme: minima
+#theme: minima
 plugins:
+  - jekyll-postcss
   - jekyll-feed
+
 
 # Exclude from processing.
 # The following items will not be processed, by default.
