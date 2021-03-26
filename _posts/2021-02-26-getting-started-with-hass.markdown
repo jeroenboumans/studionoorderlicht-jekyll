@@ -2,17 +2,21 @@
 layout: post
 title:  "Getting started with HASS"
 date:   2021-03-26 16:37:10 +0100
+excerpt_separator: <!--more-->
+thumbnail: ![Screenshot of the log output](https://i.imgur.com/yrWD9Jj.png)
 
 ---
 
 # State Listener for Home Assistant
 (and Pimoroni's Micro Dot pHAT)
 
-![rest](https://i.imgur.com/yrWD9Jj.png)
-A Home Assistent state listener made with Python powered by the Home Asssistent websocket API. Each script contains of two parallel processes:
+{{page.thumbnail}}
 
+A Home Assistent state listener made with Python powered by the Home Asssistent websocket API. Each script contains of two parallel processes:
 - Logger: when configured states change value the logger starts outputting these.
 - Listener: the handler to listen and write states changes to memory.
+
+<!--more-->
 
 ## Requirements
 
@@ -58,6 +62,8 @@ $ curl https://get.pimoroni.com/microdotphat | bash
 
 ### Run logger
 
+{{page.thumbnail}}
+
 ```bash
 # Run logger or pHAT logger 
 $ python3 log.py
@@ -90,4 +96,3 @@ Suggestions are welcome. For major changes, please open an issue first to discus
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
-
