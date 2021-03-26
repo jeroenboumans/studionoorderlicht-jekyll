@@ -3,8 +3,7 @@ layout: post
 title:  "Getting started with HASS"
 date:   2021-03-26 16:37:10 +0100
 excerpt_separator: <!--more-->
-thumbnail: ![Screenshot of the log output](https://i.imgur.com/yrWD9Jj.png)
-
+thumbnail: '![Screenshot of the log output](https://i.imgur.com/yrWD9Jj.png)'
 ---
 
 # State Listener for Home Assistant
