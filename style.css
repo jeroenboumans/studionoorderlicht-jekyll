@@ -5,8 +5,9 @@
 @import "tailwindcss/utilities";
 
 @layer components {
+
     h1, h2, h3, h4, p, ul, pre {
-        @apply mt-4 max-w-2xl text-xl mb-8 text-gray-600 dark:text-indigo-100 lg:mx-auto;
+        @apply mt-4 text-xl mb-8 text-gray-600 dark:text-indigo-100;
     }
 
     h1, h2 {
