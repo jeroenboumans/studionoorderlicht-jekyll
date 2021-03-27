@@ -1,35 +1,159 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Pimoroni Grow Kit - MQTT"
 date:   2021-03-20 16:37:10 +0100
 categories: jekyll update
 excerpt_separator: <!--more-->
 ---
-
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. 
-
+A python script for Raspberry Pi submitting sensor data to a MQTT topic. This can easily be picked up by a home assistant sensor configuration.
 <!--more-->
+![](https://i.imgur.com/qMEm57R.png)
+A Home Assistent state listener made with Python powered by the Home Asssistent websocket API. Each script contains of two parallel processes:
+- Logger: when configured states change value the logger starts outputting these.
+- Listener: the handler to listen and write states changes to memory.
 
-You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+## Requirements
 
-Jekyll requires blog post files to be named according to the following format:
+* A Raspberry Pi (Zero)
+* A [Piromoni   Grow Kit](https://shop.pimoroni.com/products/grow)
 
-`YEAR-MONTH-DAY-title.MARKUP`
+## Raspberry Pi Preparation
 
-Where `YEAR` is a four-digit number, `MONTH` and `DAY` are both two-digit numbers, and `MARKUP` is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+1. Install the Raspberry Pi OS Lite image with [Raspberry Pi Imager](https://www.raspberrypi.org/software/)
+2. Create a `SSH` file in the root location of the SD card
+3. Create a `wpa_supplicant.conf` file in the root location of the SD card:
 
-Jekyll also offers powerful support for code snippets:
+    ```bash
+    country=NL
+    ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+    update_config=1
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-{% endhighlight %}
+    network={
+       ssid="Wifi Network Name"
+       scan_ssid=1
+       psk="Wifi password"
+       key_mgmt=WPA-PSK
+    }
+    ```
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
+4. Insert the SD card in the Raspberry power it on. Connect to the raspberry using ssh and name it to easily recognize it on your network:
 
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+    ```bash
+    $ ssh pi@192.168.86.26
+
+    $ sudo raspi-config
+    ```
+
+5. Install th dependencies
+
+    ```bash
+    $ sudo apt update
+    $ sudo apt install python3-pip
+    $ pip3 install asyncio paho-mqtt
+    $ pip3 install -U PyYAML
+    ```
+6. Install Pimoroni's Grow Kit python library
+
+    ```bash
+    $ curl -sSL https://get.pimoroni.com/grow | bash
+    ```   
+
+6. Install the repository
+
+    ```bash
+    $ git clone https://github.com/jeroenboumans/PimoroniGrowKit-MQTT
+    ```
+
+7. Fill in your broker config in the `config.yaml`
+
+## Run in background
+
+```bash
+sudo chmod +x watcher.py
+python3 watcher.py &
+```
+
+# Read as sensor in Home Assistant
+
+![](https://i.imgur.com/J89flMq.png)
+
+Every Grow Kit moisture sensor needs to be registered as a sensor in Home Assistant.
+Both moisture and saturation can be read from the topic.
+
+To read data, register the following sensors in your Home Assistant config files:
+
+## Saturation
+```yaml
+# sensors.yaml
+ - platform: mqtt
+   name: "Saturation"
+   state_topic: "home/livingroom/plants"
+   value_template: "{{ value_json.sensor_0.saturation }}"
+   json_attributes_topic: " home/livingroom/plants"
+   json_attributes_template: "{{ value_json.sensor_0 | tojson }}"
+```
+
+## Moisture
+```yaml
+# sensors.yaml
+ - platform: mqtt
+   name: "Moisture"
+   state_topic: "home/livingroom/plants"
+   value_template: "{{ value_json.sensor_0.moisture }}"
+   json_attributes_topic: " home/livingroom/plants"
+   json_attributes_template: "{{ value_json.sensor_0 | tojson }}"
+```
+
+## Lux level
+```yaml
+ - platform: mqtt
+   name: "Lux"
+   state_topic: "home/livingroom/plants"
+   unit_of_measurement: 'Lux'
+   value_template: "{{ value_json.light }}"
+   json_attributes_topic: "home/livingroom/plants"
+   json_attributes_template: "{{ value_json.light }}"
+```
+
+All three sensor's data can be loaded in your view using [kalkih/mini-graph-card](https://github.com/kalkih/mini-graph-card):
+```yaml
+type: 'custom:mini-graph-card'
+name: Moisture Levels
+entities:
+  - entity: sensor.moisture
+    name: Musa
+  - entity: sensor.moisture_2
+    name: Herbs Mix
+  - entity: sensor.moisture_3
+    name: Pteris
+hours_to_show: 24
+line_width: 3
+points_per_hour: 4
+smoothing: true
+color_thresholds: # range of 0 - 30 Hz for moisture
+  - value: 15
+    color: '#FF0000'
+  - value: 5
+    color: '#FFFF00'
+  - value: 0
+    color: '#00FFFF'
+logarithmic: true
+icon: 'mdi:water'
+show:
+  icon_adaptive_color: true
+  state: true
+  legend: true
+  average: false
+  extrema: true
+```
+
+## Run at boot
+
+Add the MQTT client as a startup script:
+```bash
+# Open de crontab file
+$ crontab -e
+
+# Add to bottom:
+@reboot sleep 30 && python3 /home/pi/log.phat.py & 2>&1 >> /home/pi/log.phat.log
+```
