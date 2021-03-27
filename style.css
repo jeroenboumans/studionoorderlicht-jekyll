@@ -10,7 +10,7 @@
         @apply mt-4 text-xl mb-8 text-gray-600 dark:text-indigo-100;
     }
 
-    h1, h2 {
+    h1, h2, h3 {
         @apply mt-2 text-5xl font-extrabold tracking-tight text-gray-700 dark:text-indigo-600 sm:text-7xl;
     }
 
@@ -18,12 +18,22 @@
         @apply text-4xl;
     }
 
+    h3 {
+        @apply text-2xl;
+    }
+
+    p {
+        @apply text-gray-600 dark:text-gray-300;
+    }
     pre {
-        @apply text-sm p-3 rounded-md bg-gray-100 text-gray-700 dark:bg-gray-900 dark:text-indigo-400 overscroll-auto sm:overscroll-auto overflow-x-scroll;
+        @apply leading-6 text-sm p-3 rounded-md bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-indigo-400 overscroll-auto sm:overscroll-auto overflow-x-auto;
+
 
     }
+    .c { @apply opacity-50; }
+    .p, .n, .na { @apply text-black dark:text-gray-300; }
+    .s, .m, .no { @apply text-indigo-500; }
+    .no { @apply font-bold; }
+    .o { @apply text-gray-400 dark:text-indigo-50; }
 
-    pre  .c {
-        @apply text-gray-400 dark:text-indigo-700;
-    }
 }

@@ -1,45 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-60309813-2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-60309813-2');
-    </script>
-
-    <meta charset="UTF-8"/>
-    <link rel="icon" type="image/svg+xml" href="/assets/icon.svg"/>
-    <link rel="stylesheet" href="/style.css"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="title" content="SpaceX Companion">
-    <meta name="description" content=" I am Studio Noorderlicht, SpaceX enthousiast and the creator of SpaceX Companion.">
-    <meta name="keywords" content="spacex, companion, launch, tracker, news">
-    <meta name="robots" content="index, follow">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="language" content="English">
-    <meta name="author" content="Jeroen Boumans">
-    <title>Studio Noorderlicht {{page.title}}</title>
-</head>
-<body class=" lg:px-8 bg-gray-50 dark:bg-gray-900 py-12 px-4 text-gray-600 dark:text-indigo-100 sm:px-6 ">
+{% include head.html %}
 
 <header>
-
     <div class=" flex items-center justify-center ">
-
         <div class="max-w-lg w-full space-y-8">
-
             <div class="lg:text-center">
                 <a href="/">
-                <img class="items-center inline-block w-32 mb-8 sm:mb-8 md:mb-10" src="/assets/icon.svg" alt="Logo">
+                    <img class="items-center inline-block w-32 mb-8 sm:mb-8 md:mb-10" src="/assets/icon.svg" alt="Logo">
 
-                <h1>Studio Noorderlicht</h1>
+                    <h1>Studio Noorderlicht</h1>
                 </a>
                 <p>
                     I am Jeroen Boumans, SpaceX enthousiast and the creator of SpaceX Companion
-
                 </p>
 
                 <div class="mt-5 sm:mt-8 sm:flex sm:justify-start lg:justify-center">
@@ -55,10 +26,7 @@
                         </a>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </header>
-
-<div class="max-w-2xl mx-auto">

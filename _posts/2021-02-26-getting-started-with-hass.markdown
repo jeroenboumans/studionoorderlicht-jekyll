@@ -82,8 +82,3 @@ $ crontab -e
 @reboot sleep 30 && python3 /home/pi/log.phat.py & 2>&1 >> /home/pi/log.phat.log
 ```
 
-## Contributing
-Suggestions are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
