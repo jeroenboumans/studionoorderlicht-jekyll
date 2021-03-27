@@ -19,7 +19,7 @@
     }
 
     pre {
-        @apply text-sm p-3 rounded-md bg-gray-100 text-gray-700 dark:bg-gray-900 dark:text-indigo-400 overscroll-none overflow-x-scroll;
+        @apply text-sm p-3 rounded-md bg-gray-100 text-gray-700 dark:bg-gray-900 dark:text-indigo-400 overscroll-auto sm:overscroll-auto overflow-x-scroll;
 
     }
 
