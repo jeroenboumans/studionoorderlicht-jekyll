@@ -12,14 +12,14 @@
 
 
 
-    <ul class="post-list">
+    <ul class="post-list list-none">
         <!--
             Here is the main paginator logic called.
             All calls to site.posts should be replaced by paginator.posts
         -->
         {% for post in paginator.posts %}
-        <li  class="my-16">
-            <article>
+        <li  class="my-16 ml-0">
+            <article >
             <span class="dark:text-gray-500">{{ post.date | date: "%b %-d, %Y" }}</span>
             <h2>
                 <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>

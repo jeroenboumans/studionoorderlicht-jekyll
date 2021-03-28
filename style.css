@@ -6,12 +6,16 @@
 
 @layer components {
 
-    h1, h2, h3, h4, p, ul, pre {
+    h1, h2, h3, h4, p, ul, ol, pre {
         @apply mt-4 text-xl mb-8 text-gray-600 dark:text-indigo-100;
     }
 
     h1, h2, h3 {
-        @apply mt-2 text-5xl font-extrabold tracking-tight text-gray-700 dark:text-indigo-600 sm:text-7xl;
+        @apply mt-2 text-5xl font-extrabold tracking-tight sm:text-7xl;
+    }
+
+    a {
+        @apply text-gray-700 dark:text-indigo-600;
     }
 
     h2 {
@@ -22,14 +26,34 @@
         @apply text-2xl;
     }
 
-    p {
+    p, li {
         @apply text-gray-600 dark:text-gray-300;
     }
-    pre {
-        @apply leading-6 text-sm p-3 rounded-md bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-indigo-400 overscroll-auto sm:overscroll-auto overflow-x-auto;
 
-
+    ul {
+        @apply list-disc;
     }
+
+    ol {
+        @apply list-decimal;
+    }
+
+    li {
+        @apply ml-5;
+    }
+
+    code {
+        @apply leading-6 text-sm text-gray-700 dark:text-indigo-400 bg-gray-100 dark:bg-gray-800 p-1 rounded-sm
+    }
+
+    pre {
+        @apply  p-3 rounded-md bg-gray-100 dark:bg-gray-800 overscroll-auto sm:overscroll-auto overflow-x-auto;
+    }
+
+    pre code {
+        @apply p-0;
+    }
+
     .c { @apply opacity-50; }
     .p, .n, .na { @apply text-black dark:text-gray-300; }
     .s, .m, .no { @apply text-indigo-500; }

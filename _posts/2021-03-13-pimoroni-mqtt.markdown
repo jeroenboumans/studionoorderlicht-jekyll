@@ -1,16 +1,16 @@
 ---
 layout: post
-title:  "Pimoroni Grow Kit - MQTT"
+title:  "Pimoroni Grow Kit broadcasting over MQTT"
 date:   2021-03-20 16:37:10 +0100
 categories: jekyll update
 excerpt_separator: <!--more-->
 ---
-A python script for Raspberry Pi submitting sensor data to a MQTT topic. This can easily be picked up by a home assistant sensor configuration.
+Pimoroni's Grow Kit comes with some python samples making it possible to read the sensors data off the board. In this setup we will be reading the
+data and submit it to a MQTT broker channel running on a Home Assistance (HA) instance. 
+This makes it possible to create graphs for your HA dashboard.
 <!--more-->
+
 ![](https://i.imgur.com/qMEm57R.png)
-A Home Assistent state listener made with Python powered by the Home Asssistent websocket API. Each script contains of two parallel processes:
-- Logger: when configured states change value the logger starts outputting these.
-- Listener: the handler to listen and write states changes to memory.
 
 ## Requirements
 
@@ -36,37 +36,51 @@ A Home Assistent state listener made with Python powered by the Home Asssistent 
     }
     ```
 
-4. Insert the SD card in the Raspberry power it on. Connect to the raspberry using ssh and name it to easily recognize it on your network:
+4. Insert the SD card in the Raspberry and power it on. Connect to the raspberry via SSH and rename it to a name of your choice to easily recognize it on your network:
 
     ```bash
-    $ ssh pi@192.168.86.26
-
-    $ sudo raspi-config
+    # SSH connection
+    ssh pi@192.168.86.26
+    
+   # Setup you Pi
+    sudo raspi-config
     ```
 
-5. Install th dependencies
+5. Install the dependencies for the Growkit and MQTT
 
     ```bash
-    $ sudo apt update
-    $ sudo apt install python3-pip
-    $ pip3 install asyncio paho-mqtt
-    $ pip3 install -U PyYAML
+    sudo apt update
+    sudo apt install python3-pip
+    pip3 install asyncio paho-mqtt
+    pip3 install -U PyYAML
     ```
 6. Install Pimoroni's Grow Kit python library
 
     ```bash
-    $ curl -sSL https://get.pimoroni.com/grow | bash
+    curl -sSL https://get.pimoroni.com/grow | bash
     ```   
 
-6. Install the repository
+6. Install the repository containing the MQTT messager 
 
     ```bash
-    $ git clone https://github.com/jeroenboumans/PimoroniGrowKit-MQTT
+    git clone https://github.com/jeroenboumans/PimoroniGrowKit-MQTT
+    cd PimoroniGrowKit-MQTT/
     ```
 
 7. Fill in your broker config in the `config.yaml`
 
-## Run in background
+   ```yaml
+   broker:
+      port: 1883
+      host: ...       # 192.168.86.x
+      topic: ...      # home/livingroom/plants
+
+   auth:
+      username: ...   # MQTT username
+      password: ...   # MQTT password
+   ```
+
+## Run the watcher
 
 ```bash
 sudo chmod +x watcher.py
@@ -77,14 +91,15 @@ python3 watcher.py &
 
 ![](https://i.imgur.com/J89flMq.png)
 
-Every Grow Kit moisture sensor needs to be registered as a sensor in Home Assistant.
+Every Grow Kit moisture sensor needs to be registered as a sensor in Home Assistant in order to use it. To register it, 
+use its corresponding index number: 0, 1, 2.
 Both moisture and saturation can be read from the topic.
 
 To read data, register the following sensors in your Home Assistant config files:
 
 ## Saturation
 ```yaml
-# sensors.yaml
+# sensors.yaml: sensor 1
  - platform: mqtt
    name: "Saturation"
    state_topic: "home/livingroom/plants"
@@ -93,7 +108,7 @@ To read data, register the following sensors in your Home Assistant config files
    json_attributes_template: "{{ value_json.sensor_0 | tojson }}"
 ```
 
-## Moisture
+## Moisture Sensor 1
 ```yaml
 # sensors.yaml
  - platform: mqtt
@@ -104,7 +119,7 @@ To read data, register the following sensors in your Home Assistant config files
    json_attributes_template: "{{ value_json.sensor_0 | tojson }}"
 ```
 
-## Lux level
+## Lux level (board sensor)
 ```yaml
  - platform: mqtt
    name: "Lux"
@@ -115,7 +130,7 @@ To read data, register the following sensors in your Home Assistant config files
    json_attributes_template: "{{ value_json.light }}"
 ```
 
-All three sensor's data can be loaded in your view using [kalkih/mini-graph-card](https://github.com/kalkih/mini-graph-card):
+WHen set up you can plot the sensors in the HA dashboard using a graph like [kalkih/mini-graph-card](https://github.com/kalkih/mini-graph-card):
 ```yaml
 type: 'custom:mini-graph-card'
 name: Moisture Levels
@@ -152,8 +167,8 @@ show:
 Add the MQTT client as a startup script:
 ```bash
 # Open de crontab file
-$ crontab -e
+crontab -e
 
 # Add to bottom:
-@reboot sleep 30 && python3 /home/pi/log.phat.py & 2>&1 >> /home/pi/log.phat.log
+@reboot sleep 30 && python3 /home/pi/PimoroniGrowKit-MQTT/watcher.py & 2>&1 >> /home/pi/PimoroniGrowKit-MQTT/watcher.log
 ```

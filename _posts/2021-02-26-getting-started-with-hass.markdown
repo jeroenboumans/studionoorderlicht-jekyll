@@ -3,9 +3,9 @@ layout: post
 title:  "State Listener for Home Assistant"
 date:   2021-03-26 16:37:10 +0100
 excerpt_separator: <!--more-->
-thumbnail: '![Screenshot of the log output](https://i.imgur.com/yrWD9Jj.png)'
 ---
-A Home Assistent state listener made with Python powered by the Home Asssistent websocket API. <!--more-->Each script contains of two parallel processes:
+
+In this tutorial you'll be setting up a Home Assistent state listener with Python powered by the Home Asssistent websocket API. <!--more-->Each script contains of two parallel processes:
 - Logger: when configured states change value the logger starts outputting these.
 - Listener: the handler to listen and write states changes to memory.
 
@@ -40,25 +40,25 @@ entities = [
 Install the dependencies if not already on your environment:
 
 ```bash
-$ pip install asyncio && pip3 install asyncws
+pip install asyncio && pip3 install asyncws
 ```
 
 Optional: in case of using the Micro Dot pHAT, install their library as well:
 
 ```bash
-$ curl https://get.pimoroni.com/microdotphat | bash
+curl https://get.pimoroni.com/microdotphat | bash
 ```
 
 ## Usage
 
 ### Run logger
 
-{{page.thumbnail}}
+![Screenshot of the log output](https://i.imgur.com/yrWD9Jj.png)
 
 ```bash
 # Run logger or pHAT logger 
-$ python3 log.py
-$ python3 log.phat.py
+python3 log.py
+python3 log.phat.py
 
 # Output Logger
 Start logger...
@@ -76,7 +76,7 @@ low
 Add a startup cronjob to the crontab of your system
 ```bash
 # Open de crontab file
-$ crontab -e
+crontab -e
 
 # Add to bottom:
 @reboot sleep 30 && python3 /home/pi/log.phat.py & 2>&1 >> /home/pi/log.phat.log
