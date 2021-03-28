@@ -80,14 +80,26 @@ This makes it possible to create graphs for your HA dashboard.
       password: ...   # MQTT password
    ```
 
-## Run the watcher
+## Running the watcher
+
+RUn the watch as a background process by making it executable 
 
 ```bash
 sudo chmod +x watcher.py
 python3 watcher.py &
 ```
 
-# Read as sensor in Home Assistant
+You can also run the watcher after reboot:
+
+```bash
+# Open de crontab file
+crontab -e
+
+# Add to bottom:
+@reboot sleep 30 && python3 /home/pi/PimoroniGrowKit-MQTT/watcher.py & 2>&1 >> /home/pi/PimoroniGrowKit-MQTT/watcher.log
+```
+
+## Read as sensor in Home Assistant
 
 ![](https://i.imgur.com/J89flMq.png)
 
@@ -97,7 +109,7 @@ Both moisture and saturation can be read from the topic.
 
 To read data, register the following sensors in your Home Assistant config files:
 
-## Saturation
+### Saturation
 ```yaml
 # sensors.yaml: sensor 1
  - platform: mqtt
@@ -108,7 +120,7 @@ To read data, register the following sensors in your Home Assistant config files
    json_attributes_template: "{{ value_json.sensor_0 | tojson }}"
 ```
 
-## Moisture Sensor 1
+### Moisture Sensor 1
 ```yaml
 # sensors.yaml
  - platform: mqtt
@@ -119,7 +131,7 @@ To read data, register the following sensors in your Home Assistant config files
    json_attributes_template: "{{ value_json.sensor_0 | tojson }}"
 ```
 
-## Lux level (board sensor)
+### Lux level (board sensor)
 ```yaml
  - platform: mqtt
    name: "Lux"
@@ -160,15 +172,4 @@ show:
   legend: true
   average: false
   extrema: true
-```
-
-## Run at boot
-
-Add the MQTT client as a startup script:
-```bash
-# Open de crontab file
-crontab -e
-
-# Add to bottom:
-@reboot sleep 30 && python3 /home/pi/PimoroniGrowKit-MQTT/watcher.py & 2>&1 >> /home/pi/PimoroniGrowKit-MQTT/watcher.log
 ```

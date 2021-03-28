@@ -11,7 +11,7 @@
     }
 
     h1, h2, h3 {
-        @apply mt-2 text-5xl font-extrabold tracking-tight sm:text-7xl;
+        @apply mt-2 text-5xl font-extrabold text-gray-700 dark:text-indigo-600 sm:text-7xl;
     }
 
     a {
