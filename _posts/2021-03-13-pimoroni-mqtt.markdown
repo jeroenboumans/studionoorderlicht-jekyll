@@ -23,12 +23,12 @@ This makes it possible to create graphs for your HA dashboard.
 1. Install the Raspberry Pi OS Lite image with [Raspberry Pi Imager](https://www.raspberrypi.org/software/)
 2. Create a `SSH` file in the root location of the SD card
 3. Create a `wpa_supplicant.conf` file in the root location of the SD card:
-
+   
     ```bash
     country=NL
     ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
     update_config=1
-
+   
     network={
        ssid="Wifi Network Name"
        scan_ssid=1
@@ -39,31 +39,32 @@ This makes it possible to create graphs for your HA dashboard.
 
 4. Insert the SD card in the Raspberry and power it on. Connect to the raspberry via SSH and rename it to a name of your choice to easily recognize it on your network:
 
-    ```bash
-    # SSH connection
-    ssh pi@192.168.**.**
-    
+   ```bash
+   # SSH connection
+   ssh pi@192.168.**.**
+       
    # Setup you Pi
-    sudo raspi-config
-    ```
+   sudo raspi-config
+   ```
+   
 5. Install Pimoroni's Grow Kit python library including the examples and reboot when the installer asks for it.
 
-    ```bash
-    curl -sSL https://get.pimoroni.com/grow | bash
-    ```
+   ```bash
+   curl -sSL https://get.pimoroni.com/grow | bash
+   ```
 
 6. Install the MQTT library
-
-    ```bash
-    pip3 install paho.mqtt
-    ```
+   
+   ```bash
+   pip3 install paho.mqtt
+   ```
    
 6. Install the repository containing the MQTT messager 
 
-    ```bash
-    git clone https://github.com/jeroenboumans/PimoroniGrowKit-MQTT
-    cd PimoroniGrowKit-MQTT/
-    ```
+   ```bash
+   git clone https://github.com/jeroenboumans/PimoroniGrowKit-MQTT
+   cd PimoroniGrowKit-MQTT/
+   ```
 
 7. Fill in your broker config in the `config.yaml`
 
@@ -76,7 +77,7 @@ This makes it possible to create graphs for your HA dashboard.
       port: 1883
       host: ...       # 192.168.86.x
       topic: ...      # home/livingroom/plants
-
+   
    auth:
       username: ...   # MQTT username
       password: ...   # MQTT password
@@ -88,14 +89,13 @@ This makes it possible to create graphs for your HA dashboard.
    ```bash
    python3 watcher.py
    ```
-
+   
    Or in the background:
-
+   
    ```bash
    sudo chmod +x watcher.py
    python3 watcher.py &
    ```
-
 
 ## Home Assistant Integration
 
