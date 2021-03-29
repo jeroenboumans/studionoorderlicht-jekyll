@@ -5,6 +5,7 @@ date:   2021-03-20 16:37:10 +0100
 categories: jekyll update
 excerpt_separator: <!--more-->
 ---
+
 Pimoroni's Grow Kit comes with some python samples making it possible to read the sensors data off the board. In this setup we will be reading the
 data and submit it to a MQTT broker channel running on a Home Assistance (HA) instance. 
 This makes it possible to create graphs for your HA dashboard.
@@ -40,26 +41,23 @@ This makes it possible to create graphs for your HA dashboard.
 
     ```bash
     # SSH connection
-    ssh pi@192.168.86.26
+    ssh pi@192.168.**.**
     
    # Setup you Pi
     sudo raspi-config
     ```
-
-5. Install the dependencies for the Growkit and MQTT
-
-    ```bash
-    sudo apt update
-    sudo apt install python3-pip
-    pip3 install asyncio paho-mqtt
-    pip3 install -U PyYAML
-    ```
-6. Install Pimoroni's Grow Kit python library
+5. Install Pimoroni's Grow Kit python library including the examples and reboot when the installer asks for it.
 
     ```bash
     curl -sSL https://get.pimoroni.com/grow | bash
-    ```   
+    ```
 
+6. Install the dependencies for the Growkit and MQTT
+
+    ```bash
+    pip3 install paho.mqtt
+    ```
+   
 6. Install the repository containing the MQTT messager 
 
     ```bash
@@ -69,7 +67,11 @@ This makes it possible to create graphs for your HA dashboard.
 
 7. Fill in your broker config in the `config.yaml`
 
+   ```bash
+   sudo nano config.yaml
+   ```
    ```yaml
+   
    broker:
       port: 1883
       host: ...       # 192.168.86.x
@@ -80,26 +82,22 @@ This makes it possible to create graphs for your HA dashboard.
       password: ...   # MQTT password
    ```
 
-## Running the watcher
+   
+8. You can run the watcher now in the current session:
+   
+   ```bash
+   python3 watcher.py
+   ```
 
-RUn the watch as a background process by making it executable 
+   Or in the background:
 
-```bash
-sudo chmod +x watcher.py
-python3 watcher.py &
-```
+   ```bash
+   sudo chmod +x watcher.py
+   python3 watcher.py &
+   ```
 
-You can also run the watcher after reboot:
 
-```bash
-# Open de crontab file
-crontab -e
-
-# Add to bottom:
-@reboot sleep 30 && python3 /home/pi/PimoroniGrowKit-MQTT/watcher.py & 2>&1 >> /home/pi/PimoroniGrowKit-MQTT/watcher.log
-```
-
-## Read as sensor in Home Assistant
+## Home Assistant Integration
 
 ![](https://i.imgur.com/J89flMq.png)
 
