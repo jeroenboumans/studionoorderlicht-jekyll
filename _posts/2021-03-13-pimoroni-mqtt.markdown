@@ -52,7 +52,7 @@ This makes it possible to create graphs for your HA dashboard.
     curl -sSL https://get.pimoroni.com/grow | bash
     ```
 
-6. Install the dependencies for the Growkit and MQTT
+6. Install the MQTT library
 
     ```bash
     pip3 install paho.mqtt
