@@ -70,8 +70,8 @@ This makes it possible to create graphs for your HA dashboard.
    ```bash
    sudo nano config.yaml
    ```
-   ```yaml
    
+   ```yaml
    broker:
       port: 1883
       host: ...       # 192.168.86.x
