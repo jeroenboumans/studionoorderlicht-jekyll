@@ -108,9 +108,9 @@ To read data, register the following sensors in your Home Assistant config files
  - platform: mqtt
    name: "Saturation"
    state_topic: "home/livingroom/plants"
-   value_template: "{{ value_json.sensor_0.saturation }}"
+   value_template: "{{ "{{ value_json.sensor_0.saturation "}}}}"
    json_attributes_topic: " home/livingroom/plants"
-   json_attributes_template: "{{ value_json.sensor_0 | tojson }}"
+   json_attributes_template: "{{ "{{ value_json.sensor_0 | tojson "}}}}"
 ```
 
 ### Moisture
@@ -119,9 +119,9 @@ To read data, register the following sensors in your Home Assistant config files
  - platform: mqtt
    name: "Moisture"
    state_topic: "home/livingroom/plants"
-   value_template: "{{ value_json.sensor_0.moisture }}"
+   value_template: "{{ "{{ value_json.sensor_0.moisture "}}}}"
    json_attributes_topic: " home/livingroom/plants"
-   json_attributes_template: "{{ value_json.sensor_0 | tojson }}"
+   json_attributes_template: "{{ "{{ value_json.sensor_0 | tojson "}}}}"
 ```
 
 ### Lux level (board sensor)
@@ -130,9 +130,9 @@ To read data, register the following sensors in your Home Assistant config files
    name: "Lux"
    state_topic: "home/livingroom/plants"
    unit_of_measurement: 'Lux'
-   value_template: "{{ value_json.light }}"
+   value_template: "{{ "{{ value_json.light "}}}}"
    json_attributes_topic: "home/livingroom/plants"
-   json_attributes_template: "{{ value_json.light }}"
+   json_attributes_template: "{{ "{{ value_json.light "}}}}"
 ```
 
 WHen set up you can plot the sensors in the HA dashboard using a graph like [kalkih/mini-graph-card](https://github.com/kalkih/mini-graph-card):
