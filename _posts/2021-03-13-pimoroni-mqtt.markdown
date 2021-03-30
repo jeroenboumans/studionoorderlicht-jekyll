@@ -11,7 +11,7 @@ data and submit it to a MQTT broker channel running on a Home Assistance (HA) in
 This makes it possible to create graphs for your HA dashboard.
 <!--more-->
 
-![](https://i.imgur.com/MxnsXlt.png)
+![](https://i.imgur.com/Z4w55J7.png)
 
 ## Requirements
 
