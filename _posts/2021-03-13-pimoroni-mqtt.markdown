@@ -84,18 +84,17 @@ This makes it possible to create graphs for your HA dashboard.
    ```
 
    
-8. You can run the watcher now in the current session:
+9. Setup the Growkit MQTT watcher via the command below:
    
    ```bash
-   python3 watcher.py
+   chmod +x setup.sh
+   
+   ./setup.sh
    ```
    
-   Or in the background:
-   
-   ```bash
-   sudo chmod +x watcher.py
-   python3 watcher.py &
-   ```
+## Autostart
+
+
 
 ## Home Assistant Integration
 
@@ -109,7 +108,7 @@ To read data, register the following sensors in your Home Assistant config files
 
 ### Saturation
 ```yaml
-# sensors.yaml: sensor 1
+# sensors.yaml: sensor 1 of 3
  - platform: mqtt
    name: "Saturation"
    state_topic: "home/livingroom/plants"
@@ -118,9 +117,9 @@ To read data, register the following sensors in your Home Assistant config files
    json_attributes_template: "{{ value_json.sensor_0 | tojson }}"
 ```
 
-### Moisture Sensor 1
+### Moisture
 ```yaml
-# sensors.yaml
+# sensors.yaml: sensor 1 of 3
  - platform: mqtt
    name: "Moisture"
    state_topic: "home/livingroom/plants"
