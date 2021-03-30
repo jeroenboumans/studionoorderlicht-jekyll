@@ -11,7 +11,7 @@ data and submit it to a MQTT broker channel running on a Home Assistance (HA) in
 This makes it possible to create graphs for your HA dashboard.
 <!--more-->
 
-![](https://i.imgur.com/LZfHl1G.png)
+![](https://i.imgur.com/MxnsXlt.png)
 
 ## Requirements
 
@@ -91,10 +91,6 @@ This makes it possible to create graphs for your HA dashboard.
    
    ./setup.sh
    ```
-   
-## Autostart
-
-
 
 ## Home Assistant Integration
 
