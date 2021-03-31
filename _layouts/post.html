@@ -1,14 +1,28 @@
 {% include header_post.html %}
 <article>
-    <section>
-        <div class="mt-8 md:mt-20 mb-12">
+
+    <section id="post">
+        <div class="mt-8 md:mt-20 mb-12 flex flex-col space-y-4">
 
             <h1>{{ page.title }}</h1>
+
+            <div class="share-page flex items-center justify-start space-x-1.5">
+                {% for category in page.categories %}
+                <span class="rounded-3xl p-1 px-3 bg-gray-400 uppercase text-white text-xs">{{ category }}</span>
+                {% endfor %}
+            </div>
+
             <span class="font-bold">{{ page.date | date: "%b %-d, %Y" }}</span>
+
         </div>
 
         {{ content | markdownify }}
 
+
     </section>
+
+<!--    {% include comments.html %}-->
+    {% include share.html %}
+
 </article>
 {% include footer.html %}

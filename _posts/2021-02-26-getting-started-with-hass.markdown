@@ -2,6 +2,7 @@
 layout: post
 title:  "State Listener for Home Assistant"
 date:   2021-03-26 16:37:10 +0100
+permalink: /:slug
 excerpt_separator: <!--more-->
 ---
 

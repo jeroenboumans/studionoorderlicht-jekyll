@@ -3,6 +3,7 @@ layout: post
 title:  "Broadcasting over MQTT with ESP8266"
 date:   2021-03-30 22:42:10 +0100
 categories: esp8266 mqtt
+permalink: /:slug
 excerpt_separator: <!--more-->
 ---
 
