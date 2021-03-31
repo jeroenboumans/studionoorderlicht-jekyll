@@ -45,10 +45,11 @@ Ready? Grab a ☕, we're going in hot!
 5. Connect your developer board via USB and select `Tools / Board: "Arduino Yún" / NodeMCU 1.0 (ESP-12E Module)` via the menu.
 
 ## Preparing the wiring ⚡
-Setup the wiring according to the schematic below. If you'd like to adjust the scheme feel free to download the source files [here](https://drive.google.com/drive/folders/1NZIqXc90lG2N74g7eD6zD_97Caj_hwzH?usp=sharing).
+Setup the wiring according to the schematic below. If you'd like to adjust the scheme feel free to download the  
+[source files](https://drive.google.com/drive/folders/1NZIqXc90lG2N74g7eD6zD_97Caj_hwzH?usp=sharing){:target="_blank"  rel="nofollow"}.
 The schematic is build with [Frizing](https://fritzing.org/). Notice that the LED Digital GPIO is named **D5** but is in fact **GPIO 14** according to the [GPIO pinout](https://www.geekering.com/wp-content/uploads/2019/03/NodeMCUv1.0-pinout.jpg). This means you can either use `D5` or `14` as name in your blink script.
 
-![](https://i.imgur.com/YuV1zW1.png)
+![](https://i.imgur.com/YuV1zW1.png){:alt="text" width="100%" height="auto"}
 
 Your done, let's get coding! 🤓
 
