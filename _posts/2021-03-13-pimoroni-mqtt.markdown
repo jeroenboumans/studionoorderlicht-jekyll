@@ -3,7 +3,7 @@ layout: post
 title:  "Pimoroni Grow Kit broadcasting over MQTT"
 date:   2021-03-20 16:37:10 +0100
 categories: raspberrypi mqtt automation
-permalink: /:slug
+permalink: /blog/:slug
 excerpt_separator: <!--more-->
 ---
 
