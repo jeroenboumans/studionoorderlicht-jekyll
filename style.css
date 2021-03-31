@@ -56,7 +56,7 @@
 
     .c, .cp, .c1 { @apply opacity-50; }
     .p, .n, .na { @apply text-black dark:text-gray-300; }
-    .s, .m, .no, .k { @apply text-indigo-500; }
+    .s, .m, .no, .k { @apply text-indigo-800 dark:text-indigo-500; }
     .no { @apply font-bold; }
     .o { @apply text-gray-400 dark:text-indigo-50; }
 
