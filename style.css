@@ -15,7 +15,7 @@
     }
 
     a {
-        @apply text-gray-700 dark:text-indigo-600;
+        @apply text-indigo-600 dark:text-indigo-600;
     }
 
     h2 {
@@ -54,9 +54,9 @@
         @apply p-0;
     }
 
-    .c { @apply opacity-50; }
+    .c, .cp, .c1 { @apply opacity-50; }
     .p, .n, .na { @apply text-black dark:text-gray-300; }
-    .s, .m, .no { @apply text-indigo-500; }
+    .s, .m, .no, .k { @apply text-indigo-500; }
     .no { @apply font-bold; }
     .o { @apply text-gray-400 dark:text-indigo-50; }
 
