@@ -6,8 +6,8 @@ categories: esp8266 mqtt
 excerpt_separator: <!--more-->
 ---
 
-Using an Raspberry Pi for MQTT broadcasting sometimes is somewhat overpowered, so we'll look at the option of using a ESP8266 instead, or to be more specific, a [NodeMCU V3 (Lolin)](https://www.amazon.nl/AZDelivery-NodeMCU-Lolin-V3-Development/dp/B074Q2WM1Y) development board.<!--more--> 
-The goal was to set up a very minimal configuration sending GPIO data over MQTT to [Home Assistant](https://www.home-assistant.io/).
+Using an Raspberry Pi for MQTT broadcasting sometimes is somewhat overpowered, so we'll look at the option of using a ESP8266 instead, or to be more specific, a [NodeMCU V3 (Lolin)](https://www.amazon.nl/AZDelivery-NodeMCU-Lolin-V3-Development/dp/B074Q2WM1Y){:target="_blank" rel="noopener"} development board.<!--more--> 
+The goal was to set up a very minimal configuration sending GPIO data over MQTT to [Home Assistant](https://www.home-assistant.io/){:target="_blank" rel="noopener"}.
 I wanted to keep it as lightweight as possible so chose to program it in C++ rather than Lua. 
 
 Ready? Grab a ☕, we're going in hot!
@@ -15,7 +15,7 @@ Ready? Grab a ☕, we're going in hot!
 
 ## Requirements
 
-* [NodeMCU V3 (Lolin)](https://www.amazon.nl/AZDelivery-NodeMCU-Lolin-V3-Development/dp/B074Q2WM1Y) development board 
+* [NodeMCU V3 (Lolin)](https://www.amazon.nl/AZDelivery-NodeMCU-Lolin-V3-Development/dp/B074Q2WM1Y){:target="_blank" rel="noopener"} development board 
 * (Micro) USB cable
 * 5V LED
 * Photoresistor
@@ -25,13 +25,13 @@ Ready? Grab a ☕, we're going in hot!
 
 ## Preparing the development board
 
-1. Download and install the board's [macOS](http://www.wch-ic.com/downloads/CH341SER_MAC_ZIP.html) 
-   / [Windows](http://www.wch-ic.com/downloads/CH341SER_ZIP.html) 
-   / [Linux](http://www.wch-ic.com/downloads/CH341SER_LINUX_ZIP.html) drivers for your system. 
+1. Download and install the board's [macOS](http://www.wch-ic.com/downloads/CH341SER_MAC_ZIP.html){:target="_blank" rel="noopener"} 
+   / [Windows](http://www.wch-ic.com/downloads/CH341SER_ZIP.html){:target="_blank" rel="noopener"} 
+   / [Linux](http://www.wch-ic.com/downloads/CH341SER_LINUX_ZIP.html){:target="_blank" rel="noopener"} drivers for your system. 
    I'll not go into detail of how to configure this for Windows/Linux. 
-   For more details check the instructions of your board's vendor. If you're using the same board (by AZ-Delivery) as I do, checkout their [e-book](https://www.az-delivery.de/en/products/nodemcu-lolin-v3-kostenfreies-e-book?_pos=3&_sid=c6d14b947&_ss=r) for exact configuration details.
+   For more details check the instructions of your board's vendor. If you're using the same board (by AZ-Delivery) as I do, checkout their [e-book](https://www.az-delivery.de/en/products/nodemcu-lolin-v3-kostenfreies-e-book?_pos=3&_sid=c6d14b947&_ss=r){:target="_blank" rel="noopener"} for exact configuration details.
    
-2. Download and install the [Arduin IDE](https://www.arduino.cc/en/software). We will program, compile and upload or C++ scripts to our ESP8266 with this IDE.
+2. Download and install the [Arduin IDE](https://www.arduino.cc/en/software){:target="_blank" rel="noopener"}. We will program, compile and upload or C++ scripts to our ESP8266 with this IDE.
 
 3. After installation, start the IDE and go to `Arduino / Preferences / Additional Boards Manager URLs` and add the following url. This will add the ESP8266 boards to the boards.
    ```text
@@ -47,7 +47,7 @@ Ready? Grab a ☕, we're going in hot!
 ## Preparing the wiring ⚡
 Setup the wiring according to the schematic below. If you'd like to adjust the scheme feel free to download the  
 [source files](https://drive.google.com/drive/folders/1NZIqXc90lG2N74g7eD6zD_97Caj_hwzH?usp=sharing){:target="_blank" rel="noopener"}.
-The schematic is build with [Frizing](https://fritzing.org/). Notice that the LED Digital GPIO is named **D5** but is in fact **GPIO 14** according to the [GPIO pinout](https://www.geekering.com/wp-content/uploads/2019/03/NodeMCUv1.0-pinout.jpg). This means you can either use `D5` or `14` as name in your blink script.
+The schematic is build with [Frizing](https://fritzing.org/){:target="_blank" rel="noopener"}. Notice that the LED Digital GPIO is named **D5** but is in fact **GPIO 14** according to the [GPIO pinout](https://www.geekering.com/wp-content/uploads/2019/03/NodeMCUv1.0-pinout.jpg). This means you can either use `D5` or `14` as name in your blink script.
 
 ![](https://i.imgur.com/YuV1zW1.png){:alt="text" width="100%" height="auto"}
 
@@ -89,7 +89,7 @@ PubSubClient client(espClient);
 Below the members, let's add the setup method. The code below will set both GPIO 14 and the onboard LED to output mode.
 The `connectToWifi` method will contain logic for connecting to the Wifi network with the provided credentials.
 The `connectToBroker` method will contain logic for connecting to the MQTT browser with the provided credentials. 
-I am using [Home Assistant](https://www.home-assistant.io/) as my broker.
+I am using [Home Assistant](https://www.home-assistant.io/){:target="_blank" rel="noopener"} as my broker.
 
 ```c++
 void setup() {
@@ -216,6 +216,6 @@ iokit = ctypes.cdll.LoadLibrary('/System/Library/Frameworks/IOKit.framework/IOKi
 cf = ctypes.cdll.LoadLibrary('/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation')
 ```
 
-Also, always debug your connection with a tool like [MQTT Explorer](http://mqtt-explorer.com/) to check whether your 
+Also, always debug your connection with a tool like [MQTT Explorer](http://mqtt-explorer.com/){:target="_blank" rel="noopener"} to check whether your 
 messages are received and broadcasted over the network or not.
 
