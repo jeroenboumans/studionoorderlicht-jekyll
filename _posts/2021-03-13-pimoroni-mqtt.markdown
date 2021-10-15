@@ -12,7 +12,9 @@ data and submit it to a MQTT broker channel running on a Home Assistance (HA) in
 This makes it possible to create graphs for your HA dashboard.
 <!--more-->
 
-![](https://i.imgur.com/Z4w55J7.png)
+![growkit repository](https://camo.githubusercontent.com/6e6c1d8ab82f6d9f84a43edd742732afd6a19e99538d2f0e8691cdadbf72ecaa/68747470733a2f2f692e696d6775722e636f6d2f5a347735354a372e706e67)
+
+Source: [🌱 https://github.com/jeroenboumans/PimoroniGrowKit-MQTT 🌱](https://github.com/jeroenboumans/PimoroniGrowKit-MQTT)
 
 ## Requirements
 
@@ -95,7 +97,7 @@ This makes it possible to create graphs for your HA dashboard.
 
 ## Home Assistant Integration
 
-![](https://i.imgur.com/J89flMq.png)
+![](https://camo.githubusercontent.com/213a0eae37ca230d4b5e1a0445d64430116a0dc36f88e5fcfd9c3d19baefd640/68747470733a2f2f692e696d6775722e636f6d2f4a3839666c4d712e706e67)
 
 Every Grow Kit moisture sensor needs to be registered as a sensor in Home Assistant in order to use it. To register it, 
 use its corresponding index number: 0, 1, 2.
@@ -136,7 +138,7 @@ To read data, register the following sensors in your Home Assistant config files
    json_attributes_template: "{{ "{{ value_json.light "}}}}"
 ```
 
-WHen set up you can plot the sensors in the HA dashboard using a graph like [kalkih/mini-graph-card](https://github.com/kalkih/mini-graph-card):
+When set up you can plot the sensors in the HA dashboard using a graph like [kalkih/mini-graph-card](https://github.com/kalkih/mini-graph-card):
 ```yaml
 type: 'custom:mini-graph-card'
 name: Moisture Levels
