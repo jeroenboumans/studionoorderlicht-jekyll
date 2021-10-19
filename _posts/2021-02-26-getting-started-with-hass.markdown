@@ -6,32 +6,32 @@ permalink: /blog/:slug
 excerpt_separator: <!--more-->
 ---
 
-As I started using [Home Assistant](https://www.home-assistant.io/) (HA) I wanted to explore the options of outputting HA states to physical devices, like a matrix display. <!--more-->
-Below I’ll guide you through a simple setup of how to build a states logger using the HA Websocket API. You can use these states in your own project to display the values on physical devices like I did on a [Pimoroni Micro Dot pHAT](https://shop.pimoroni.com/products/microdot-phat?variant=25454635527). I’m running all the commands bellow on a Raspberry Pi Zero W environment.
+As I started using [Home Assistant](https://www.home-assistant.io/){:target="_blank" rel="noopener"} (HA) I wanted to explore the options of outputting HA states to physical devices, like a matrix display. <!--more-->
+Below I’ll guide you through a simple setup of how to build a states logger using the HA Websocket API. You can use these states in your own project to display the values on physical devices like I did on a [Pimoroni Micro Dot pHAT](https://shop.pimoroni.com/products/microdot-phat?variant=25454635527){:target="_blank" rel="noopener"}. I’m running all the commands bellow on a Raspberry Pi Zero W environment.
 
 ## Requirements
 
 ### Home Assistant
 
-First you need to make sure a HA instance is running. You can run HA on a Raspberry Pi by following the installation guide for Raspberry [here](https://www.home-assistant.io/installation/raspberrypi).
+First you need to make sure a HA instance is running. You can run HA on a Raspberry Pi by following the installation guide for Raspberry [here](https://www.home-assistant.io/installation/raspberrypi){:target="_blank" rel="noopener"}.
 
-Off-topic tip: *since the amount of states values HA is writing to the database can become quite large in the future I’d suggest saving these [somewhere else](https://www.home-assistant.io/integrations/recorder) than the default database file on the SD card. This will lengthen the lifespan of your SD card.* 😉 *I’m saving the records to a MySQL database running on my Synology NAS but you can pick any other environment, like [Amazon RDS](https://aws.amazon.com/rds/), [Google Cloud SQL](https://cloud.google.com/sql) etc.*
+Off-topic tip: *since the amount of states values HA is writing to the database can become quite large in the future I’d suggest saving these [somewhere else](https://www.home-assistant.io/integrations/recorder){:target="_blank" rel="noopener"} than the default database file on the SD card. This will lengthen the lifespan of your SD card.* 😉 *I’m saving the records to a MySQL database running on my Synology NAS but you can pick any other environment, like [Amazon RDS](https://aws.amazon.com/rds/){:target="_blank" rel="noopener"}, [Google Cloud SQL](https://cloud.google.com/sql){:target="_blank" rel="noopener"} etc.*
 
 ### Python Environment
 
-You also need an environment that can run a Python. For starting and experimenting I’d suggest installing JetBrains’s [PyCharm Community edition](https://www.jetbrains.com/pycharm/download/). You can easily run python scripts on different Python versions and install packages required for your Python scripts. In my example I am using a Raspberry Pi Zero running Raspberry Pi OS Lite installed using the [Raspberry Pi Imager](https://www.raspberrypi.org/software/). That being said it’s time to install the first dependencies needed for this guide.
+You also need an environment that can run a Python. For starting and experimenting I’d suggest installing JetBrains’s [PyCharm Community edition](https://www.jetbrains.com/pycharm/download/){:target="_blank" rel="noopener"}. You can easily run python scripts on different Python versions and install packages required for your Python scripts. In my example I am using a Raspberry Pi Zero running Raspberry Pi OS Lite installed using the [Raspberry Pi Imager](https://www.raspberrypi.org/software/){:target="_blank" rel="noopener"}. That being said it’s time to install the first dependencies needed for this guide.
 
 ```bash
 pip install asyncio asyncws
 ```
 
-`asyncio` is used for running async processes in your python script while `asyncws` is used for listening to websockets, which is exactly what we need for listening to the [HA Websocket API](https://developers.home-assistant.io/docs/api/websocket). Our script will have the following simple structure:
+`asyncio` is used for running async processes in your python script while `asyncws` is used for listening to websockets, which is exactly what we need for listening to the [HA Websocket API](https://developers.home-assistant.io/docs/api/websocket){:target="_blank" rel="noopener"}. Our script will have the following simple structure:
 
 1. **Logger**: logging the specified states to our terminal/display, each for a specified interval, like 2 seconds.
 2. **Listener**: its goals are storing the state values, received by the HA Websocket API, into in a simple dictionary object (cache). Since we don’t know when HA updates the states we’re listening to this needs to be done on a different thread.
 
 ### HA Authorization Token
-Go to the [profile section](https://my.home-assistant.io/redirect/profile/) in HA and create a token in the bottom Token section. Copy it somewhere (safe). We’ll need it in our configuration named as `HASS_IO_AUTHORIZATION_TOKEN`.
+Go to the [profile section](https://my.home-assistant.io/redirect/profile/){:target="_blank" rel="noopener"} in HA and create a token in the bottom Token section. Copy it somewhere (safe). We’ll need it in our configuration named as `HASS_IO_AUTHORIZATION_TOKEN`.
 
 ---
 
@@ -156,5 +156,5 @@ The logger starts showing cached state values whenever there are any in the `cac
 
 ---
 
-If you’re interested in running it on a [Pimoroni Micro Dot pHAT](https://shop.pimoroni.com/products/microdot-phat?variant=25454635527) like I did checkout the project on [Github](https://github.com/jeroenboumans/StateListener-HomeAssistant). If you have any questions feel free to ask!
+If you’re interested in running it on a [Pimoroni Micro Dot pHAT](https://shop.pimoroni.com/products/microdot-phat?variant=25454635527){:target="_blank" rel="noopener"} like I did checkout the project on [Github](https://github.com/jeroenboumans/StateListener-HomeAssistant){:target="_blank" rel="noopener"}. If you have any questions feel free to ask!
 

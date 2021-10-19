@@ -14,7 +14,7 @@ This makes it possible to create graphs for your HA dashboard.
 
 ![growkit repository](https://camo.githubusercontent.com/6e6c1d8ab82f6d9f84a43edd742732afd6a19e99538d2f0e8691cdadbf72ecaa/68747470733a2f2f692e696d6775722e636f6d2f5a347735354a372e706e67)
 
-Source: [🌱 https://github.com/jeroenboumans/PimoroniGrowKit-MQTT 🌱](https://github.com/jeroenboumans/PimoroniGrowKit-MQTT)
+Source: [🌱 https://github.com/jeroenboumans/PimoroniGrowKit-MQTT 🌱](https://github.com/jeroenboumans/PimoroniGrowKit-MQTT){:target="_blank" rel="noopener"}
 
 ## Requirements
 
@@ -23,7 +23,7 @@ Source: [🌱 https://github.com/jeroenboumans/PimoroniGrowKit-MQTT 🌱](https:
 
 ## Raspberry Pi Preparation
 
-1. Install the Raspberry Pi OS Lite image with [Raspberry Pi Imager](https://www.raspberrypi.org/software/)
+1. Install the Raspberry Pi OS Lite image with [Raspberry Pi Imager](https://www.raspberrypi.org/software/){:target="_blank" rel="noopener"}
 2. Create a `SSH` file in the root location of the SD card
 3. Create a `wpa_supplicant.conf` file in the root location of the SD card:
    
@@ -138,7 +138,7 @@ To read data, register the following sensors in your Home Assistant config files
    json_attributes_template: "{{ "{{ value_json.light "}}}}"
 ```
 
-When set up you can plot the sensors in the HA dashboard using a graph like [kalkih/mini-graph-card](https://github.com/kalkih/mini-graph-card):
+When set up you can plot the sensors in the HA dashboard using a graph like [kalkih/mini-graph-card](https://github.com/kalkih/mini-graph-card){:target="_blank" rel="noopener"}:
 ```yaml
 type: 'custom:mini-graph-card'
 name: Moisture Levels
