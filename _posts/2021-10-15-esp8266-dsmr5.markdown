@@ -14,7 +14,7 @@ In [one of my previous posts](/blog/esp8266-mqtt) I wrote about submitting MQTT 
 
 When reading more about ESP8266's I came by a (forked) [repo](https://github.com/daniel-jong/esp8266_p1meter){:target="_blank" rel="noopener"} that replaces the P1 cable and RPi solution by using a 4 bucks **ESP8266 (D1 Mini)** and a **RJ12** (6-pin) using the **5V** power on the 6th pin. In the process below we'll build a small ESP8266-based DSMR5 connector for our smart meter.
 
-Credits for the DSMR software go to [Flip Hess](https://github.com/fliphess){:target="_blank" rel="noopener"} and [Daniel Jong](https://github.com/daniel-jong){:target="_blank"}.
+Credits for the DSMR software go to [Flip Hess](https://github.com/fliphess){:target="_blank" rel="noopener"} and [Daniel Jong](https://github.com/daniel-jong){:target="_blank" rel="noopener"}.
 
 ## Requirements
 
