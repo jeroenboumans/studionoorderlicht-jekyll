@@ -22,9 +22,9 @@ Credits for the DSMR software go to [Flip Hess](https://github.com/fliphess/esp8
 * A RJ12 (6-pin) cable like [this one](https://www.tinytronics.nl/shop/nl/kabels-en-connectoren/kabels-en-adapters/ethernet-en-telefoon/rj12-naar-6-pins-dupont-jumper-adapter)
 * 10k Ω resistor,
 * Jump wires
-* Solder prototyping PCB board, like the [**Rademacher WR-Typ 790-5**](https://www.amazon.fr/LOCHRASTERPLATTE-790-5-HP-160-100/dp/B003A62ZLI)
+* Solder prototyping PCB board, like the [Rademacher WR-Typ 790-5](https://www.amazon.fr/LOCHRASTERPLATTE-790-5-HP-160-100/dp/B003A62ZLI)
 
-## Preparing the wiring ⚡
+## Preparing the wires ⚡
 
 The RJ12 cable numbering walks from index 1-6 with it's **pin down**. Connect colors in the example as follows:
 
@@ -71,7 +71,7 @@ The RJ12 cable numbering walks from index 1-6 with it's **pin down**. Connect co
    char MQTT_PASS[32] = "SOME_PASSWORD";
    ```
 
-4. After a successful upload, check your Wifi networks. The ESP8266 should broadcast itself. Connect to it, this will present a Wifi setup screen. Override your MQTT broker credentials when needed, and fill in your Wifi SSID and password. When connected successful the ESP8266 will not present itself as a network anymore. Run a tool like [LanScan](https://apps.apple.com/nl/app/lanscan/id472226235) (MacOS) to check for its LAN address.
+4. After a successful upload, check your Wifi networks. The ESP8266 should broadcast itself. Connect to it, this will present a Wifi setup screen. Override your MQTT broker credentials when needed, and fill in your Wifi SSID and password. When connected successfully the ESP8266 will not present itself as a network anymore. Run a tool like [LanScan](https://apps.apple.com/nl/app/lanscan/id472226235) (MacOS) to check for its LAN address.
 
    ![Wifi Setup](https://i.imgur.com/VaY8G5g.png)
 
@@ -81,7 +81,8 @@ The RJ12 cable numbering walks from index 1-6 with it's **pin down**. Connect co
    
 
 6. Make sure you register the MQTT entities correctly for the new HA [Energy Management](https://my.home-assistant.io/redirect/energy/) pane.
-   Make sure your power consumption entities are registered like the following:
+   
+   Register your power consumption entities like the following:
    
    ```yaml
    # sensors.p1.yaml
