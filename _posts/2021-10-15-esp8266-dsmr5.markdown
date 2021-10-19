@@ -6,7 +6,7 @@ permalink: /blog/:slug
 excerpt_separator: <!--more-->
 ---
 
-For sending statistics about energy usage to my [Home Assistant](https://www.home-assistant.io/){:target="_blank" rel="noopener"} (**HA**) instance from my smart meter, a *Sagemcom XS210 ESMR5* (**DSMR5**), I've been using a **P1** cable and a Raspberry Pi Zero (**RPi**) running `ser2net` following a blog post by [Jean-Paul van Ravensberg](https://devsecninja.com/2018/08/04/use-smart-energy-meter-with-home-assistant){:target="_blank"}. However, the idea of using *both* a P1 connector cable **RJ11** (4-pin) and a RPi Zero seemed somewhat overkill as I had to make a wall mount for it, use an extra power outlet to power the RPi and the RPi is running a full OS for just reading and submitting serial data. Time to move to an ESP8266 solution!
+For sending statistics about energy usage to my [Home Assistant](https://www.home-assistant.io/){:target="_blank" rel="noopener"} (**HA**) instance from my smart meter, a *Sagemcom XS210 ESMR5* (**DSMR5**), I've been using a **P1** cable and a Raspberry Pi Zero (**RPi**) running `ser2net` following a blog post by [Jean-Paul van Ravensberg](https://devsecninja.com/2018/08/04/use-smart-energy-meter-with-home-assistant){:target="_blank" rel="noopener"}. However, the idea of using *both* a P1 connector cable **RJ11** (4-pin) and a RPi Zero seemed somewhat overkill as I had to make a wall mount for it, use an extra power outlet to power the RPi and the RPi is running a full OS for just reading and submitting serial data. Time to move to an ESP8266 solution!
 
 <!--more-->
 
