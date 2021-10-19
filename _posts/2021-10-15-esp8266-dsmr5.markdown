@@ -6,23 +6,23 @@ permalink: /blog/:slug
 excerpt_separator: <!--more-->
 ---
 
-For sending statistics about energy usage to my [Home Assistant](https://www.home-assistant.io/) (**HA**) instance from my smart meter, a *Sagemcom XS210 ESMR5* (**DSMR5**), I've been using a **P1** cable and a Raspberry Pi Zero (**RPi**) running `ser2net` following a blog post by [Jean-Paul van Ravensberg](https://devsecninja.com/2018/08/04/use-smart-energy-meter-with-home-assistant). However, the idea of using *both* a P1 connector cable **RJ11** (4-pin) and a RPi Zero seemed somewhat overkill as I had to make a wall mount for it, use an extra power outlet to power the RPi and the RPi is running a full OS for just reading and submitting serial data. Time to move to an ESP8266 solution!
+For sending statistics about energy usage to my [Home Assistant](https://www.home-assistant.io/){:target="_blank"} (**HA**) instance from my smart meter, a *Sagemcom XS210 ESMR5* (**DSMR5**), I've been using a **P1** cable and a Raspberry Pi Zero (**RPi**) running `ser2net` following a blog post by [Jean-Paul van Ravensberg](https://devsecninja.com/2018/08/04/use-smart-energy-meter-with-home-assistant){:target="_blank"}. However, the idea of using *both* a P1 connector cable **RJ11** (4-pin) and a RPi Zero seemed somewhat overkill as I had to make a wall mount for it, use an extra power outlet to power the RPi and the RPi is running a full OS for just reading and submitting serial data. Time to move to an ESP8266 solution!
 
 <!--more-->
 
 In [one of my previous posts](/blog/esp8266-mqtt) I wrote about submitting MQTT messages with an ESP8266 NodeMCU to a broker, like HA. Look it up if you'd like to rehearse.
 
-When reading more about ESP8266's I came by a (forked) [repo](https://github.com/daniel-jong/esp8266_p1meter) that replaces the P1 cable and RPi solution by using a 4 bucks **ESP8266 (D1 Mini)** and a **RJ12** (6-pin) using the **5V** power on the 6th pin. In the process below we'll build a small ESP8266-based DSMR5 connector for our smart meter.
+When reading more about ESP8266's I came by a (forked) [repo](https://github.com/daniel-jong/esp8266_p1meter){:target="_blank"} that replaces the P1 cable and RPi solution by using a 4 bucks **ESP8266 (D1 Mini)** and a **RJ12** (6-pin) using the **5V** power on the 6th pin. In the process below we'll build a small ESP8266-based DSMR5 connector for our smart meter.
 
-Credits for the DSMR software go to [Flip Hess](https://github.com/fliphess/esp8266_p1meter) and [Daniel Jong](https://github.com/daniel-jong/esp8266_p1meter).
+Credits for the DSMR software go to [Flip Hess](https://github.com/fliphess){:target="_blank"} and [Daniel Jong](https://github.com/daniel-jong){:target="_blank"}.
 
 ## Requirements
 
-* An [ESP8266 D1 Mini](https://www.amazon.nl/gp/product/B0754N794H/) (**D1 Mini**)
-* A RJ12 (6-pin) cable like [this one](https://www.tinytronics.nl/shop/nl/kabels-en-connectoren/kabels-en-adapters/ethernet-en-telefoon/rj12-naar-6-pins-dupont-jumper-adapter)
+* An [ESP8266 D1 Mini](https://www.amazon.nl/gp/product/B0754N794H/){:target="_blank"} (**D1 Mini**)
+* A RJ12 (6-pin) cable like [this one](https://www.tinytronics.nl/shop/nl/kabels-en-connectoren/kabels-en-adapters/ethernet-en-telefoon/rj12-naar-6-pins-dupont-jumper-adapter){:target="_blank"}
 * 10k Ω resistor,
 * Jump wires
-* Solder prototyping PCB board, like the [Rademacher WR-Typ 790-5](https://www.amazon.fr/LOCHRASTERPLATTE-790-5-HP-160-100/dp/B003A62ZLI)
+* Solder prototyping PCB board, like the [Rademacher WR-Typ 790-5](https://www.amazon.fr/LOCHRASTERPLATTE-790-5-HP-160-100/dp/B003A62ZLI){:target="_blank"}
 
 ## Preparing the wires ⚡
 
@@ -39,9 +39,9 @@ The RJ12 cable numbering walks from index 1-6 with it's **pin down**. Connect co
 
 ## Preparing the software
 
-1. Install [Visual Code](https://code.visualstudio.com/) with the [PlatformIO plugin](https://platformio.org/install/ide?install=vscode). This plugin will build and upload the DSMR5 software to our D1 Mini. 
+1. Install [Visual Code](https://code.visualstudio.com/){:target="_blank"} with the [PlatformIO plugin](https://platformio.org/install/ide?install=vscode){:target="_blank"}. This plugin will build and upload the DSMR5 software to our D1 Mini. 
 
-2. Checkout the forked [repository](https://github.com/daniel-jong/esp8266_p1meter) by Daniel Jong and open it in Visual Code. Go to the PlatformIO tab and choose **Build**. Next choose **Upload and Monitor** after a successful build. You should see some logs like the following:
+2. Checkout the forked [repository](https://github.com/daniel-jong/esp8266_p1meter){:target="_blank"} by Daniel Jong and open it in Visual Code. Go to the PlatformIO tab and choose **Build**. Next choose **Upload and Monitor** after a successful build. You should see some logs like the following:
     
     ```bash
     > Executing task: platformio run --target upload --target monitor --environment d1_mini <
@@ -71,16 +71,16 @@ The RJ12 cable numbering walks from index 1-6 with it's **pin down**. Connect co
    char MQTT_PASS[32] = "SOME_PASSWORD";
    ```
 
-4. After a successful upload, check your Wifi networks. The ESP8266 should broadcast itself. Connect to it, this will present a Wifi setup screen. Override your MQTT broker credentials when needed, and fill in your Wifi SSID and password. When connected successfully the ESP8266 will not present itself as a network anymore. Run a tool like [LanScan](https://apps.apple.com/nl/app/lanscan/id472226235) (MacOS) to check for its LAN address.
+4. After a successful upload, check your Wifi networks. The ESP8266 should broadcast itself. Connect to it, this will present a Wifi setup screen. Override your MQTT broker credentials when needed, and fill in your Wifi SSID and password. When connected successfully the ESP8266 will not present itself as a network anymore. Run a tool like [LanScan](https://apps.apple.com/nl/app/lanscan/id472226235){:target="_blank"} (MacOS) to check for its LAN address.
 
    ![Wifi Setup](https://i.imgur.com/VaY8G5g.png)
 
-5. Unplug The ESP8266 and solder the wires and components onto a solder PCB prototyping board and cut it at a correct size. Use included spacers for the ESP8266 to encapsulate the soldered parts. I'm using a [**Rademacher WR-Typ 790-5**](https://www.amazon.fr/LOCHRASTERPLATTE-790-5-HP-160-100/dp/B003A62ZLI) board. This makes it easier to solder multiple wires and connections.
+5. Unplug The ESP8266 and solder the wires and components onto a solder PCB prototyping board and cut it at a correct size. Use included spacers for the ESP8266 to encapsulate the soldered parts. I'm using a [**Rademacher WR-Typ 790-5**](https://www.amazon.fr/LOCHRASTERPLATTE-790-5-HP-160-100/dp/B003A62ZLI){:target="_blank"} board. This makes it easier to solder multiple wires and connections.
 
    ![Rademacher WR-Typ 790-5](https://i.imgur.com/8jperpp.jpg)
    
 
-6. Make sure you register the MQTT entities correctly for the new HA [Energy Management](https://my.home-assistant.io/redirect/energy/) pane.
+6. Make sure you register the MQTT entities correctly for the new HA [Energy Management](https://my.home-assistant.io/redirect/energy/){:target="_blank"} pane.
    
    Register your power consumption entities like the following:
    
@@ -112,9 +112,9 @@ The RJ12 cable numbering walks from index 1-6 with it's **pin down**. Connect co
    ```
 
 
-7. Reload MQTT entities on the [Server Controls](https://my.home-assistant.io/redirect/server_controls/) page.
+7. Reload MQTT entities on the [Server Controls](https://my.home-assistant.io/redirect/server_controls/){:target="_blank"} page.
 
-8. Entities should now appear on the [Energy configuration](https://my.home-assistant.io/redirect/config_energy/) page of your HA instance:
+8. Entities should now appear on the [Energy configuration](https://my.home-assistant.io/redirect/config_energy/){:target="_blank"} page of your HA instance:
 
    ![Entities](https://i.imgur.com/kG1b2ut.png)
    
@@ -122,7 +122,7 @@ The RJ12 cable numbering walks from index 1-6 with it's **pin down**. Connect co
 ## Notes
 If you cannot find the entities, make sure your ESP8266 is connected to the MQTT broker by choosing **Upload and Monitor** from the PlatformIO panel in Visual Code. This show necessary debugging information about the configured Wifi and MQTT connection. Also make sure your `.yaml` entities contain the correct `device_class` and `state_class`. The entities appear only in the dropdown of the defined `device_class` in the Energy configuration panel.
 
-For a full example of the MQTT entities, check the previous [example configuration](https://github.com/fliphess/esp8266_p1meter) by Flip Hess. Not that the entities in the examples do not have the correct `device_class` and `state_class` which should be provided as noted above.
+For a full example of the MQTT entities, check the previous [example configuration](https://github.com/fliphess/esp8266_p1meter){:target="_blank"} by Flip Hess. Not that the entities in the examples do not have the correct `device_class` and `state_class` which should be provided as noted above.
 
 ## Optional
 When necessary you can [download](/assets/downloads/Case_DSMR5_ESP8266_D1_Mini.stl) my design for a 3D printable case. Feel free to adjust as needed.
