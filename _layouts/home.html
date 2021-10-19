@@ -36,16 +36,17 @@
     {% if paginator.total_pages > 1 %}
     <ul class="pager">
         {% if paginator.previous_page %}
-        <li class="previous">
-            <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
+        <li class="previous" style="border:none; !important">
+            <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="px-8 py-3 border-2 border-transparent dark:border-width-2 dark:border-indigo-600 text-base font-medium rounded-lg text-white hover:text-white bg-indigo-600 dark:bg-transparent hover:bg-indigo-100 md:py-4 dark:text-indigo-100 dark:hover:bg-indigo-900 dark:hover:border-purple-600 md:text-lg md:px-10">&larr; Newer Posts</a>
         </li>
         {% endif %}
         {% if paginator.next_page %}
-        <li class="next">
-            <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+        <li class="next" style="border:none; !important" class="border-transparent">
+            <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="px-8 py-3 border-2 border-transparent dark:border-width-2 dark:border-indigo-600 text-base font-medium rounded-lg text-white hover:text-white bg-indigo-600 dark:bg-transparent hover:bg-indigo-100 md:py-4 dark:text-indigo-100 dark:hover:bg-indigo-900 dark:hover:border-purple-600 md:text-lg md:px-10">Older Posts &rarr;</a>
         </li>
         {% endif %}
     </ul>
+    <h6 class="text-center pb-10">Page {{paginator.page}} / {{paginator.total_pages}}</h6>
     {% endif %}
 
 </div>

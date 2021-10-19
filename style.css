@@ -34,6 +34,10 @@
     ul {
         @apply list-disc;
     }
+    
+    ul.pager li {
+        border: none;
+    }
 
     ol {
         @apply list-decimal;
