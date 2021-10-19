@@ -45,8 +45,9 @@
             <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}" class="px-8 py-3 border-2 border-transparent dark:border-width-2 dark:border-indigo-600 text-base font-medium rounded-lg text-white hover:text-white bg-indigo-600 dark:bg-transparent hover:bg-indigo-100 md:py-4 dark:text-indigo-100 dark:hover:bg-indigo-900 dark:hover:border-purple-600 md:text-lg md:px-10">Older Posts &rarr;</a>
         </li>
         {% endif %}
+        
     </ul>
-    <h6 class="text-center pb-10">Page {{paginator.page}} / {{paginator.total_pages}}</h6>
+    <h6 class="text-center pb-10">Page {{paginator.page}} / {{paginator.total_pages}} - <a href="/table">All</a></h6>
     {% endif %}
 
 </div>

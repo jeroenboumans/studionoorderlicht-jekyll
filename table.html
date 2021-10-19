@@ -1,0 +1,19 @@
+---
+layout: post
+title: Table of Contents
+permalink: /table/
+---
+
+<ul class="post-list list-none">
+  
+    {% for post in site.posts %}
+    <li  class="my-16 ml-0">
+        <article >
+        <span class="dark:text-gray-500">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <h3 class="text-size-2">
+            <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+        </h3>
+        </article>
+    </li>
+    {% endfor %}
+</ul>
